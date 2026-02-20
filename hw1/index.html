@@ -28,7 +28,7 @@
 	<body>
 		<div class="container">
 		<h1>CS184/284A Spring 2025 Homework 1 Write-Up</h1>
-		<div style="text-align: center;">Names: </div>
+		<div style="text-align: center;">Names: Nada Hameed</div>
 
 		<br>
 
@@ -39,7 +39,7 @@
 		Link to GitHub repository: (TODO) <a href="https://cs184.eecs.berkeley.edu/sp25">cs184.eecs.berkeley.edu/sp25</a>
 
 		<figure>
-			<img src="lion.jpg" alt="Lion" style="width:50%"/>
+			<img src="images/image1.png" alt="Lion" style="width:50%"/>
 			<figcaption>You can add images with captions!</figcaption>
 		</figure>
 
@@ -50,32 +50,70 @@
 		<h2>Overview</h2>
 		Give a high-level overview of what you implemented in this homework. Think about what you've built as a whole. Share your thoughts on what interesting things you've learned from completing the homework.
 
-		<h2>Task 1: Drawing Single-Color Triangles</h2>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		<p>This assignment, here is what I did:</p>
 
-		<p>Here is an example 2x2 gridlike structure using an HTML table. Each <b>tr</b> is a row and each <b>td</b> is a column in that row. You might find this useful for framing and showing your result images in an organized fashion.</p>
+		<h2>Task 1: Drawing Single-Color Triangles</h2>
+		Generally, rasterization takes as input 3 points of a triangle, and the output is a set of pixel values approximating the triangle. To start, I found the min and max x and y values of the triangle. This way, when we are iterating through pixels, we will not be looking at points that are out of bounds (so we'll save a lot of time!).
+		Then, I iterated through all the x and y values between the respective minimums and maximums, so all the possible pixel values. For each pair of (x,y), I checked if it was inside the triangle with my helper function.
+		My helper function, inside, is an implementation of the three line test, where I take in the triangle values as well as the point we are checking. We are checking if (x,y) is in triangle t. I implemented this by iterating through all the pairs of triangle points, and using the formulas from lecture, I found dx and dy, and plugged those into the Line equation, Li. I kept track of the Lis for all the pairs of points, and then at the end, I checked if they were all greater than or equal to 0, and if so, return true (so the point is inside the triangle). However, when I did this, basic test 6 failed, so I also added a check to see if they were all less than or equal to 0, and this would also return true. This way, I accounted for winding order of the vertices, aka the direction the points were going in.
+		Finally, back in the rasterize_triangle function, if the current point (x,y) was inside the triangle, I used fill_pixel to fill that pixel with the color (which was a parameter).
+
+		Since I used minimum and maximum values in my iterations, I ensured that I had a reasonable bounding box aka I only search through the smallest rectangle that can be drawn while ensuring the entire triangle is in it.
+
+		<p>Here are the images generated with the rasterizer.</p>
 		<div style="display: flex; flex-direction: column; align-items: center;">
 			<table style="width: 100%; text-align: center; border-collapse: collapse;">
 			  <tr>
 				<td style="text-align: center;">
-				  <img src="lion.jpg" width="400px"/>
-				  <figcaption>Caption goes here.</figcaption>
+				  <img src="../build/task1_photos/screenshot_test3.png" width="400px"/>
+				  <figcaption>basic test 3</figcaption>
 				</td>
 				<td style="text-align: center;">
-				  <img src="lion.jpg" width="400px"/>
-				  <figcaption>Caption goes here.</figcaption>
+				  <img src="../build/task1_photos/screenshot_test4.png" width="400px"/>
+				  <figcaption>basic test 4</figcaption>
 				</td>
 			  </tr>
 			  <tr>
 				<td style="text-align: center;">
-				  <img src="lion.jpg" width="400px"/>
-				  <figcaption>Caption goes here.</figcaption>
+				  <img src="../build/task1_photos/screenshot_test5.png" width="400px"/>
+				  <figcaption>basic test 5</figcaption>
 				</td>
 				<td style="text-align: center;">
-				  <img src="lion.jpg" width="400px"/>
-				  <figcaption>Caption goes here.</figcaption>
+				  <img src="../build/task1_photos/screenshot_test6.png" width="400px"/>
+				  <figcaption>basic test 6</figcaption>
 				</td>
 			  </tr>
+			</table>
+		</div>
+
+		<p>Extra credit: To make my rasterizer run faster, I implemented incremental triangle traversal. If you notice with the line equation from lecture, if we make a change to the x or y in L(x,y), the value changes by a constant. So instead of recomputing the line values every iteration of the for loop, we can do it once, and then just add the constant. Also, I iterated via y first and then x, since x is the number of columns and y is the number of rows. Via the data, we can see that implementing this did speed up the rasterizer a bit.</p>
+		<div>
+			<table>
+				<tr>
+					<th>Test number</th>
+					<th>Normal</th>
+					<th>Optimized</th>
+				</tr>
+				<tr>
+					<td>"test 3"</td>
+					<td>19 ms</td>
+					<td>15 ms</td>
+				</tr>
+				<tr>
+					<td>"test 4"</td>
+					<td>5 ms</td>
+					<td>5 ms</td>
+				</tr>
+				<tr>
+					<td>"test 5"</td>
+					<td>9 ms</td>
+					<td>7 ms</td>
+				</tr>
+				<tr>
+					<td>"test 6"</td>
+					<td>8 ms</td>
+					<td>5 ms</td>
+				</tr>
 			</table>
 		</div>
 		
