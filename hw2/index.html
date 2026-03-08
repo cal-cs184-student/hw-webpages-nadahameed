@@ -32,7 +32,7 @@
 
 		<br>
 
-		Link to webpage: (TODO) <a href="https://cs184.eecs.berkeley.edu/sp25">cs184.eecs.berkeley.edu/sp25</a>
+		Link to webpage: <a href="https://cal-cs184-student.github.io/hw-webpages-nadahameed/">Github webpage</a>
 
 		<br>
 		
@@ -48,7 +48,10 @@
 		-->
 
 		<h2>Overview</h2>
-		Give a high-level overview of what you implemented in this homework. Think about what you've built as a whole. Share your thoughts on what interesting things you've learned from completing the homework.
+		<p>This homework, we implemented Bezier curves and surfaces, and also triangle meshes and modifications. First, we worked on using de Casteljau’s algorithm to create Bezier curves, and we were able to easily apply that to make Bezier surfaces. Then, we got familiar with the half edge data structure, and used the data structure to implement area-weighted area normals (which was used for smooth shading), edge flips and split edges in triangle meshes, and finally tie that all together to implement loop subdivision for mesh sampling (which generates smoother surfaces).</p>
+		<p>The coolest thing we worked on was probably the half edge mesh implementation. When looking through the halfEdgeMesh.h file, it seemed pretty straightforward and simplistic, but our full implementation practically hinged on understanding the data structure, and it was cool how we were able to perform all these operations with just half edges (and other elements, but those were defined mainly by half edges too).</p>
+		<p>Also, we learned about how upsampling helps render smoother surfaces. It helped us understand how to improve resolution, but also how we can manipulate the mesh for clarity despite not having extra information. It seemed like a pretty useful technique that hopefully we will learn more about in the future.</p>
+		<p>Overall, this project was helpful in implementing what we’ve learned in lecture, and is a great rendering tool.</p>
 
 		<h2>Section I: Bezier Curves and Surfaces</h2>
 
