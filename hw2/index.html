@@ -27,12 +27,12 @@
 	</head>
 	<body>
 		<div class="container">
-		<h1>CS184/284A Spring 2025 Homework 2 Write-Up</h1>
-		<div style="text-align: center;">Names: Iris Li and Nada Hameed</div>
+		<h1>CS184/284A Spring 2026 Homework 2</h1>
+		<div style="text-align: center;">Iris Li and Nada Hameed</div>
 
 		<br>
 
-		Link to webpage: <a href="https://cal-cs184-student.github.io/hw-webpages-nadahameed/">Github webpage</a>
+		Link to webpage: <a href="https://cal-cs184-student.github.io/hw-webpages-nadahameed/hw2/index.html">Github webpage</a>
 
 		<br>
 		
@@ -40,7 +40,6 @@
 
 		<figure>
 			<img src="images/teapot.png" alt="Teapot" style="width:50%"/>
-			<figcaption>We can put our extra credit here.</figcaption>
 		</figure>
 
 		<!--
@@ -162,7 +161,7 @@
 
 		<h3>Part 5: Edge split</h3>
 		<p>To implement the edge split operation, we first created pointers to practically all the elements in the original mesh: the half edges, faces, edges, and vertices. Then, we created all the new elements using the newHalfedge() and other new methods. Next, we reassigned all the pointers for these new elements as well as for any existing elements. Finally, we deleted any elements that we no longer needed (like the old faces and the input edge and its half edges).</p>
-		<p>This time, we didn’t actually experience any bugs, because we first drew out everything entirely, with labels for all the elements. Then we drew what the expectation should be after we split the edges, again labeling all the elements. Following these two reference images of ours, we simply created elements and reassigned where necessary, and were able to successfully implement splitting edges.</p>
+		<p>This time, we did not actually experience any bugs, because we first drew out everything entirely, with labels for all the elements. Then we drew what the expectation should be after we split the edges, again labeling all the elements. Following these two reference images of ours, we simply created elements and reassigned where necessary, and were able to successfully implement splitting edges.</p>
 
 		<table style="width: 100%; text-align: center; border-collapse: collapse;">
 			<tr>
@@ -249,9 +248,6 @@
 		</table>
 
 		<p> We can pre-process the cube with edge flips and splits so that the cube subdivides symmetrically. As the iterations of loop subdivision on the cube increases, so does the asymmetry since loop subdivision happens on the mesh's triangulation, the cube's face is then also triangulated with diagonals that might not exactly be symmetrical. Thus, when these asymmetries pile up over iterations, it becomes evident enough to look asymmetric. The pre-processing helps alleviate the effects because by flipping diagonals or performing edge splits, this allows the faces to have triangulations that match and thus have symmetry.</p>
-		
-		<h2>(Optional) Section III: Potential Extra Credit - Art Competition: Model something Creative</h2>
-		Soon to come
 		</div>
 	</body>
 </html>

@@ -156,18 +156,22 @@
 		<h2>Task 3: Transforms</h2>
 		<p>To implement transformations, I modified the transforms.cpp file. There are three different 3x3 matrices that I implemented, which were from lecture. I added the translation matrix, which moves an object a certain x or y. Then, there is the scale matrix, which scales x in a certain size and y a certain size. Finally there is the rotation matrix. The input was in degrees counterclockwise. However, I believe c++ deals with radians, so to compute sines and cosines, I converted the degree input to radians and then computed the rotation matrix (which has sine and cosine terms).</p>
 		<p>With my modified cube man, I wanted him to look like he was jumping. I also modified colors and created a few of my own shapes so he’d look more connected. Eyes too. I used all three of the transformations for these changes.</p>
-		<img src="images/my_robot.png" width="400px"/>
-		<figcaption>My robot</figcaption>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<img src="images/my_robot.png" width="400px"/>
+			<figcaption>My robot</figcaption>
+		</div>
 
 		<h4>Extra Credit</h4>
 		<p>I added two keys to the hotbar that would let you rotate the image in the GUI. The R key rotates left, the T key rotates right. To implement this, first I added cases for pressing R and T in DrawRend::keyboard_event. I also added a rotation variable called theta to keep track of what direction the image is rotated in. I added a method called update_view_matrix(), which builds a new svg to ndc matrix that includes rotation. In the existing function set_view_method(), instead of directly setting the view matrix, I update new variables called view_x, view_y, and view_span, and calls the new update_view_matrix() function. In the view_init() function, the view_angle is reset to 0 and it calls update_view_matrix().</p>
 		<p>The main logic was in update_view_matrix(). I build the matrix with matrix multiplication. First I translated the point to the origin, because rotation happens relative to the origin, and this way nothing would rotate strangely/across a different axis. Then I applied the rotation based on theta (that we had recorded from keypresses). Then I translated back to the original point, and finally scaled the coordinates. To scale, I used the view_span variable, which represents how much of the scene is visible, to scale the coordinates. Scaling also handled the final shift to make sure the coords fit with ndc.</p>
 		<p>If you press a key to rotate the view in the GUI, theta changes, and update_view_matrix() is called to regenerate the matrix. When you later call rasterize_triangle(), the vertex positions are multiplied by the svg_to_ndc matrix so they appear at the correct position.</p>
 		
-		<img src="images/robot_rotate_right.png" width="400px"/>
-		<figcaption>My robot rotated right</figcaption>
-		<img src="images/robot_rotate_left.png" width="400px"/>
-		<figcaption>My robot rotated left</figcaption>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<img src="images/robot_rotate_right.png" width="400px"/>
+			<figcaption>My robot rotated right</figcaption>
+			<img src="images/robot_rotate_left.png" width="400px"/>
+			<figcaption>My robot rotated left</figcaption>
+		</div>
 
 		<h2>Task 4: Barycentric coordinates</h2>
 		<p>Barycentric coordinates represent the influence of each vertex on a point. In rasterization, the data for vertices Va, Vb, and Vc are known, but the pixels in between the vertices need to be filled in. Barycentric coordinates provide a coordinate system relative to the triangles shape to fill in this data; this is interpolation.</p>
@@ -180,8 +184,10 @@
 
 		<p>Interpolation works because if you know a property at a vertex, like a color or texture coordinate, you can calculate the value at point P by multiplying the vertex values and their weights. For example, consider: vertex A is red, B is green, C is blue. If a pixel is in the center, its barycentric coordinates would be (1/3, 1/3, 1/3). If the pixel is very close to A, weight a might be 0.9, so the pixel color would be very reddish. Barycentric interpolation is used for smooth shading, texture mapping, and z-buffer.</p>
 
-		<img src="images/task4_triangle.png" width="400px"/>
-		<figcaption>Interpolation example</figcaption>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<img src="images/task4_triangle.png" width="400px"/>
+			<figcaption>Interpolation example</figcaption>
+		</div>
 
 		<p>To implement barycentric coordinates, I used line equations. I basically aimed to measure how far a point is from an edge to determine how close it is to the opposite vertex. So the barycentric coordinate ‘a’ for vertex A is proportional to the distance of point P from the edge BC (opposite to A).</p>
 		<p>First, I copied the existing rasterize_triangle method. Then I defined the edges for the triangle. (dx0, dy0) is edge A to B. (dx1,dy1) is edge B to C. (dx2, dy2) is edge C to A. Then, for any point (x,y), I calculated the edge function value: \(L(x,y) = -(x - X_i) * dy_i + (y - Y_i) * dx_i\). After, I had to ensure that the barycentric coordinates would sum to 1. So I divided the edge function value at the current pixel by the value of the same edge function at the opposite vertex.</p>
@@ -192,8 +198,10 @@
 		</ul>
 		<p>In my loop, for each pixel (x, y), I calculate the distances, then divide to get the weights a, b, and c. Finally, I calculate the final color using the weights and the input colors.</p>
 		
-		<img src="images/task4_wheel.png" width="400px"/>
-		<figcaption>The color wheel built with my barycentric coordinate implementation</figcaption>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<img src="images/task4_wheel.png" width="400px"/>
+			<figcaption>The color wheel built with my barycentric coordinate implementation</figcaption>
+		</div>
 
 		<h2>Task 5: "Pixel sampling" for texture mapping</h2>
 		<p>Pixel sampling is the process of converting an image into a set of pixels, by measuring color and brightness at specific points. It determines image resolution and detail. Higher sampling rates mean sharper images. Basically, it is deciding what color a pixel should be when the true image is continuous. </p>
