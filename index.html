@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="site.css">
 	<style>
 			h1 {
 				text-align: center;
@@ -21,7 +21,6 @@
 			}
 
 			body {
-				font-family: 'Inter', sans-serif;
 				line-height: 1.4;
 				color: #32323a;
 				background-color: #ffffff;
@@ -57,33 +56,24 @@
 	</style>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CS184/284A Homework Webpages</title>
+    <title>CS184/284A Projects</title>
 	</head>
 	<body>
 		<div class="wrapper">
 			<header>
-				<h1 style="align-self:flex-end;">CS184/284A Homework Webpages</h1>
+				<h1 style="align-self:flex-end;">CS184/284A Projects</h1>
 			</header>
 			<main>
 				<div class="content">
 					<ul>
-						<li><a href="/hw1/index.html">Homework 1</a></li>
-						<li><a href="/hw2/index.html">Homework 2</a></li>
-						<li><a href="/hw3/index.html">Homework 3</a></li>
-						<li><a href="/hw4/index.html">Homework 4</a></li>
+						<li><a href="hw1/index.html">Homework 1</a></li>
+						<li><a href="hw2/index.html">Homework 2</a></li>
+						<li><a href="hw3/index.html">Homework 3</a></li>
+						<li><a href="hw4/index.html">Homework 4</a></li>
+						<li><a href="final/index.html">Final Project</a></li>
 					</ul>
 				</div>
 			</main>
 		</div>
 	</body>
-	<script>
-		var links = document.body.getElementsByTagName("a")
-		var a = window.location.href.indexOf(".io")
-		var repo_name = window.location.href.substring(a+3)
-		for(var i = 0; i < links.length; i++){
-			var link = links[i]
-			var actual_name = link.href.substring(link.href.indexOf(".io")+4)
-			link.href = repo_name + actual_name
-		}
-	</script>
 </html>

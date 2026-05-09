@@ -1,28 +1,32 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
+  <meta charset="utf-8" />
+  <title>CS 184 Path Tracer</title>
+  <link rel="stylesheet" href="../site.css" />
   <style>
-    body {
-      background-color: white;
-      padding: 100px;
-      width: 1000px;
-      margin: auto;
-      text-align: left;
-      font-weight: 300;
-      font-family: 'Open Sans', sans-serif;
-      color: #121212;
+    h1 {
+      text-align: center;
     }
-    h1, h2, h3, h4 {
-      font-family: 'Source Sans Pro', sans-serif;
+    .container {
+      margin: 0 auto;
+      padding: 60px 20%;
+    }
+    .container table {
+      width: 100%;
+      text-align: center;
+      border-collapse: collapse;
+    }
+    figure {
+      text-align: center;
+    }
+    img {
+      display: inline-block;
     }
     kbd {
       color: #121212;
     }
   </style>
-  <title>CS 184 Path Tracer</title>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Sans+Pro" rel="stylesheet">
-
   <script>
     MathJax = {
       tex: {
@@ -30,31 +34,27 @@
       }
     };
   </script>
-  <script id="MathJax-script" async
-          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-  </script>
-
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 </head>
-
-
 <body>
+<div class="container">
+<h1>CS 184: Computer Graphics and Imaging, Spring 2026</h1>
+<h1>Project 3: Path Tracer</h1>
+<div style="text-align: center;">Nada Hameed & Iris Li</div>
 
-<h1 align="middle">CS 184: Computer Graphics and Imaging, Spring 2026</h1>
-<h1 align="middle">Project 3: Path Tracer</h1>
-<h2 align="middle">Nada Hameed & Iris Li</h2>
+<br>
 
-<!-- Add Website URL -->
-<h2 align="middle">Website URL: <a href="https://cal-cs184-student.github.io/hw-webpages-nadahameed/hw3/index.html">HW3</a></h2>
+Link to webpage: <a href="https://cal-cs184-student.github.io/hw-webpages-nadahameed/hw3/index.html">cal-cs184-student.github.io/hw-webpages-nadahameed/hw3</a>
 
 <br><br>
 
-
-<div align="center">
-  <table style="width=100%">
+<div style="text-align: center;">
+  <table>
     <tr>
-      <td align="middle">
-        <img src="images/part4_images_new/Nlights_m3_accF_bunny.png" width="480px" />
-        <figcaption align="middle">Bunny</figcaption>
+      <td>
+        <img src="images/part4_images_new/Nlights_m3_accF_bunny.png" width="480" alt="Path-traced bunny render" />
+        <figcaption>Bunny</figcaption>
+      </td>
     </tr>
   </table>
 </div>
@@ -62,7 +62,7 @@
 
   <div>
 
-    <h2 align="middle">Overview</h2>
+    <h2>Overview</h2>
     <p>
       In this homework, we implemented a renderer that uses a pathtracer algorithm. First, we implemented ray generation and scene intersection. We generated rays and checked if they intersected our scene. Then, we implemented a bounding volume hierarchy to speed up the path tracer. Then, we implemented several lighting options, direct illumination and global illumination. Direct illumination is when there is one source of light, and global illumination is when there is light constantly being reflected. In global illumination, we implemented recursive methods, which was pretty interesting. But the rendering time was very long, since there are thousands of primitives and we are, again, checking light bounces recursively. Finally, we implemented adaptive sampling, to reduce noise without increasing samples.
       <br><br>
@@ -70,7 +70,7 @@
     </p>
     <br>
 
-    <h2 align="middle">Part 1: Ray Generation and Scene Intersection</h2>
+    <h2>Part 1: Ray Generation and Scene Intersection</h2>
    <!-- Walk through the ray generation and primitive intersection parts of the rendering pipeline.
    Explain the triangle intersection algorithm you implemented in your own words.
    Show images with normal shading for a few small .dae files. -->
@@ -127,7 +127,7 @@
    </p>
    <br>
 
-   <div align="middle">
+   <div style="text-align: center;">
      <table style="width:100%">
        <tr align="center">
          <td>
@@ -148,7 +148,7 @@
    <br>
 
 
-    <h2 align="middle">Part 2: Bounding Volume Hierarchy</h2>
+    <h2>Part 2: Bounding Volume Hierarchy</h2>
     <!-- Walk through your BVH construction algorithm. Explain the heuristic you chose for picking the splitting point.
     Show images with normal shading for a few large .dae files that you can only render with BVH acceleration.
     Compare rendering times on a few scenes with moderately complex geometries with and without BVH acceleration. Present your results in a one-paragraph analysis. -->
@@ -192,7 +192,7 @@
       Images with normal shading for a few large .dae files that we can only render with BVH acceleration.
     </h3>
     <!-- Example of including multiple figures -->
-    <div align="middle">
+    <div style="text-align: center;">
       <table style="width:100%">
         <tr align="center">
           <td>
@@ -229,7 +229,7 @@
     </p>
     <br>
 
-    <h2 align="middle">Part 3: Direct Illumination</h2>
+    <h2>Part 3: Direct Illumination</h2>
    <!-- Walk through both implementations of the direct lighting function.
    Show some images rendered with both implementations of the direct lighting function.
    Focus on one particular scene with at least one area light and compare the noise levels in soft shadows when rendering with 1, 4, 16, and 64 light rays (the -l flag) and with 1 sample per pixel (the -s flag) using light sampling, not uniform hemisphere sampling.
@@ -281,7 +281,7 @@
      Images rendered with both implementations of the direct lighting function.
    </h3>
    <!-- Example of including multiple figures -->
-   <div align="middle">
+   <div style="text-align: center;">
      <table style="width:100%">
        <!-- Header -->
        <tr align="center">
@@ -324,7 +324,7 @@
      Focusing on one particular scene with at least one area light and compare the noise levels in <b>soft shadows</b> when rendering with 1, 4, 16, and 64 light rays (the -l flag) and with 1 sample per pixel (the -s flag) using light sampling, <b>not</b> uniform hemisphere sampling:
    </h3>
    <!-- Example of including multiple figures -->
-   <div align="middle">
+   <div style="text-align: center;">
      <table style="width:100%">
        <tr align="center">
          <td>
@@ -362,7 +362,7 @@
    <br>
 
 
-    <h2 align="middle">Part 4: Global Illumination</h2>
+    <h2>Part 4: Global Illumination</h2>
     <!-- Walk through your implementation of the indirect lighting function.
     Show some images rendered with global (direct and indirect) illumination. Use 1024 samples per pixel.
     Pick one scene and compare rendered views first with only direct illumination, then only indirect illumination. Use 1024 samples per pixel. (You will have to edit PathTracer::at_least_one_bounce_radiance(...) in your code to generate these views.)
@@ -387,7 +387,7 @@
       Some images rendered with global (direct and indirect) illumination, using 1024 samples per pixel:
     </h3>
     <!-- Example of including multiple figures -->
-    <div align="middle">
+    <div style="text-align: center;">
       <table style="width:100%">
         <tr align="center">
           <td>
@@ -407,7 +407,7 @@
       Comparing rendered views first with only direct illumination, then only indirect illumination, using 1024 samples per pixel:
     </h3>
     <!-- Example of including multiple figures -->
-    <div align="middle">
+    <div style="text-align: center;">
       <table style="width:100%">
         <tr align="center">
           <td>
@@ -431,7 +431,7 @@
       N Bounce Rays: For CBbunny.dae, comparing rendered views with max_ray_depth set to 0, 1, 2, 3, and 100, using 1024 samples per pixel. Not accumulating bounces.
     </h3>
     <!-- Example of including multiple figures -->
-    <div align="middle">
+    <div style="text-align: center;">
       <table style="width:100%">
         <tr align="center">
           <td>
@@ -471,7 +471,7 @@
       N Bounce Rays: For CBbunny.dae, comparing rendered views with max_ray_depth set to 0, 1, 2, 3, and 100. Use 1024 samples per pixel. Accumulating bounces.
     </h3>
     <!-- Example of including multiple figures -->
-    <div align="middle">
+    <div style="text-align: center;">
       <table style="width:100%">
         <tr align="center">
           <td>
@@ -511,7 +511,7 @@
       Russian Roulette: For CBbunny.dae, comparing rendered views with max_ray_depth set to 0, 1, 2, 3, and 100, using 1024 samples per pixel. Not accumulating bounces.
     </h3>
     <!-- Example of including multiple figures -->
-    <div align="middle">
+    <div style="text-align: center;">
       <table style="width:100%">
         <tr align="center">
           <td>
@@ -557,7 +557,7 @@
       Comparing rendered views with various sample-per-pixel rates, using 4 light rays.
     </h3>
     <!-- Example of including multiple figures -->
-    <div align="middle">
+    <div style="text-align: center;">
       <table style="width:100%">
         <tr align="center">
           <td>
@@ -604,7 +604,7 @@
     <br>
 
 
-    <h2 align="middle">Part 5: Adaptive Sampling</h2>
+    <h2>Part 5: Adaptive Sampling</h2>
     <!-- Explain adaptive sampling. Walk through your implementation of the adaptive sampling.
     Pick one scene and render it with at least 2048 samples per pixel. Show a good sampling rate image with clearly visible differences in sampling rate over various regions and pixels. Include both your sample rate image, which shows your how your adaptive sampling changes depending on which part of the image you are rendering, and your noise-free rendered result. Use 1 sample per light and at least 5 for max ray depth. -->
 
@@ -619,7 +619,7 @@
       Rendering scenes with at least 2048 samples per pixel, using 1 sample per light and 5 for max ray depth.
     </h3>
     <!-- Example of including multiple figures -->
-    <div align="middle">
+    <div style="text-align: center;">
       <table style="width:100%">
         <tr align="center">
           <td>
@@ -645,7 +645,8 @@
     </div>
     <br>
 
-
+  </div>
+</div>
 
 </body>
 </html>
